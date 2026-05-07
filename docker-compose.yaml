@@ -1,0 +1,23 @@
+version: '3.2'
+
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong@Passw0rd
+    ports:
+      - 1433:1433
+    volumes: 
+      - ./sqldata:/var/opt/mssql/
+      - ./sqllog:/var/opt/sqlserver/log
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - 80:80
+    volumes:
+      - ./app:/usr/share/nginx/html
+
+
+  
