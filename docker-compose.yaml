@@ -13,10 +13,12 @@ services:
       - ./sqllog:/var/opt/sqlserver/log
 
   nginx:
-    image: nginx:latest
+    image: tiangolo/nginx-rtmp:latest
     ports:
       - 80:80
+      - 1935:1935
     volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
       - ./app:/usr/share/nginx/html
 
 
