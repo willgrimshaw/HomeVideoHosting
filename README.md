@@ -10,6 +10,45 @@ docker compose up
 docker compose down
 ```
 
+# Individual services
+
+## Open shell inside a container
+```bash
+docker exec -it <container-name> sh
+```
+
+## Run nginx with rmtp module
+```bash
+docker container run --rm -d -p 80:80 -p 1935:1935 --name nginx-rmtp tiangolo/nginx-rtmp
+```
+This image uses the following configuration:
+```
+rtmp_auto_push on;
+worker_processes auto;
+rtmp_auto_push on;
+events {}
+rtmp {
+    server {
+        listen 1935;
+        listen [::]:1935 ipv6only=on;    
+
+        application live {
+            live on;
+            record off;
+        }
+    }
+}
+
+```
+
+## Run sql server
+**Note**
+Password must be strong for sql server to actually start up
+```bash
+docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=YourStrong@Passw0rd" -p 1433:1433  --name sqlserver --hostname sqlserver -d --mount type=bind,source="$(pwd)/sqldata",target=//var/opt/mssql/ mcr.microsoft.com/mssql/server:2019-latest
+```
+
+# Database
 ## Database schema
 ```sql
 -- Main videos table
@@ -130,52 +169,6 @@ VALUES
 
     -- dog_playing_fetch.mp4 (Smith + Johnson)
     (10, 2), (10, 5), (10, 6);
-```
-
-# Individual services
-
-## Open shell inside a container
-```bash
-docker exec -it <container-name> sh
-```
-
-## Run nginx with rmtp module
-```bash
-docker container run --rm -d -p 80:80 -p 1935:1935 --name nginx-rmtp tiangolo/nginx-rtmp
-```
-This image uses the following configuration:rtmp_auto_push on;
-```
-worker_processes auto;
-rtmp_auto_push on;
-events {}
-rtmp {
-    server {
-        listen 1935;
-        listen [::]:1935 ipv6only=on;    
-
-        application live {
-            live on;
-            record off;
-        }
-    }
-}
-```
-
-
-## Run nginx
-```bash
-docker container run --rm -d -p 80:80 nginx:latest
-```
-Alternatively bind the current directory to allow for live updates during development:
-```bash
-docker container run --rm -d -p 80:80 --mount type=bind,source="$(pwd)/app",target=/usr/share/nginx/html nginx:latest
-```
-
-## Run sql server
-**Note**
-Password must be strong for sql server to actually start up
-```bash
-docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=YourStrong@Passw0rd" -p 1433:1433  --name sqlserver --hostname sqlserver -d --mount type=bind,source="$(pwd)/sqldata",target=//var/opt/mssql/ mcr.microsoft.com/mssql/server:2019-latest
 ```
 
 
