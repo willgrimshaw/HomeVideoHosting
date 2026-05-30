@@ -46,24 +46,24 @@ rtmp {
 ```sql
 -- Main videos table
 CREATE TABLE HomeVideos (
-    Id INT IDENTITY(1,1) PRIMARY KEY,
-    Filename NVARCHAR(255) NOT NULL,
-    LengthSeconds INT NOT NULL,
-    RecordedDate DATETIME2 NULL,
-    Location NVARCHAR(255) NOT NULL
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Filename TEXT NOT NULL,
+    LengthSeconds INTEGER NOT NULL,
+    RecordedDate DATETIME NULL,
+    Location TEXT NOT NULL
 );
 
 -- People table
 CREATE TABLE People (
-    Id INT IDENTITY(1,1) PRIMARY KEY,
-    FirstName NVARCHAR(100) NOT NULL,
-    LastName NVARCHAR(100) NOT NULL
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    FirstName TEXT NOT NULL,
+    LastName TEXT NOT NULL
 );
 
 -- Junction table for many-to-many relationship
 CREATE TABLE HomeVideoPeople (
-    HomeVideoId INT NOT NULL,
-    PersonId INT NOT NULL,
+    HomeVideoId INTEGER NOT NULL,
+    PersonId INTEGER NOT NULL,
 
     PRIMARY KEY (HomeVideoId, PersonId),
 
