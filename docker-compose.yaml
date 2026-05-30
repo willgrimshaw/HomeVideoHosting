@@ -1,15 +1,4 @@
 services:
-  db:
-    image: mcr.microsoft.com/mssql/server:2019-latest
-    environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=YourStrong@Passw0rd
-    ports:
-      - 1433:1433
-    volumes: 
-      - ./sqldata:/var/opt/mssql/
-      - ./sqllog:/var/opt/sqlserver/log
-
   nginx:
     image: tiangolo/nginx-rtmp:latest
     ports:
@@ -17,7 +6,9 @@ services:
       - 1935:1935
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
-      - ./app:/var/www/html
-
-
-  
+      - ./html:/var/www/html
+  php:
+    image: php:8.3-fpm
+    volumes:
+      - ./php:/var/www/html
+      - ./data:/var/www/data

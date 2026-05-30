@@ -21,7 +21,7 @@ docker exec -it <container-name> sh
 ```bash
 docker container run --rm -d -p 80:80 -p 1935:1935 --name nginx-rmtp tiangolo/nginx-rtmp
 ```
-This image uses the following configuration:
+**NOTE** This image uses the following default configuration:
 ```
 rtmp_auto_push on;
 worker_processes auto;
@@ -41,13 +41,6 @@ rtmp {
 
 ```
 
-## Run sql server
-**Note**
-Password must be strong for sql server to actually start up
-```bash
-docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=YourStrong@Passw0rd" -p 1433:1433  --name sqlserver --hostname sqlserver -d --mount type=bind,source="$(pwd)/sqldata",target=//var/opt/mssql/ mcr.microsoft.com/mssql/server:2019-latest
-```
-
 # Database
 ## Database schema
 ```sql
@@ -56,7 +49,8 @@ CREATE TABLE HomeVideos (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     Filename NVARCHAR(255) NOT NULL,
     LengthSeconds INT NOT NULL,
-    RecordedDate DATETIME2 NULL
+    RecordedDate DATETIME2 NULL,
+    Location NVARCHAR(255) NOT NULL
 );
 
 -- People table
@@ -86,7 +80,6 @@ CREATE TABLE HomeVideoPeople (
 ## Database test data
 ```sql
 -- Insert sample people (grouped into families)
-
 INSERT INTO People (FirstName, LastName)
 VALUES
     -- Johnson family
