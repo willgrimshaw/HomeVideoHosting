@@ -1,12 +1,12 @@
 services:
   nginx:
-    image: tiangolo/nginx-rtmp:latest
+    image: nginx:latest
     ports:
       - 80:80
-      - 1935:1935
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
       - ./html:/var/www/html
+      - ./videos:/var/www/videos
   php:
     image: php:8.3-fpm
     volumes:

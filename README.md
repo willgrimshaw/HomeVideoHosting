@@ -10,35 +10,9 @@ docker compose up
 docker compose down
 ```
 
-# Individual services
-
 ## Open shell inside a container
 ```bash
 docker exec -it <container-name> sh
-```
-
-## Run nginx with rmtp module
-```bash
-docker container run --rm -d -p 80:80 -p 1935:1935 --name nginx-rmtp tiangolo/nginx-rtmp
-```
-**NOTE** This image uses the following default configuration:
-```
-rtmp_auto_push on;
-worker_processes auto;
-rtmp_auto_push on;
-events {}
-rtmp {
-    server {
-        listen 1935;
-        listen [::]:1935 ipv6only=on;    
-
-        application live {
-            live on;
-            record off;
-        }
-    }
-}
-
 ```
 
 # Database

@@ -55,8 +55,7 @@ try {
         $sql .= ' AND ' . implode(' AND ', $clauses);
     }
 
-    $sql .= ' GROUP BY h.Id, h.Filename, h.LengthSeconds, h.RecordedDate, h.Location
-    ORDER BY h.RecordedDate DESC, h.Filename ASC';
+    $sql .= ' GROUP BY h.Id, h.Filename, h.LengthSeconds, h.RecordedDate, h.Location';
     $stmt = $db->prepare($sql);
     $stmt->execute($params);
     $videos = $stmt->fetchAll(PDO::FETCH_ASSOC);

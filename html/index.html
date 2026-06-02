@@ -3,33 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>HomeVideoHosting</title>
 </head>
 <body>
-    <form id="filter_form">
-        <label>Name:</label>
-        <input type="text" name="name">
+    <div id="filters_container">
+        <form id="filter_form">
+            <label>Name:</label>
+            <input type="text" name="name">
 
-        <label>Location:</label>
-        <input type="text" name="location">
+            <label>Location:</label>
+            <input type="text" name="location">
 
-        <label>Start date:</label>
-        <input type="date" name="startdate">
+            <label>Start date:</label>
+            <input type="date" name="startdate">
 
-        <label>End date:</label>
-        <input type="date" name="enddate">
-    </form>
+            <label>End date:</label>
+            <input type="date" name="enddate">
+        </form>
 
 
-    <br>
+        <br>
 
-    <button type="button" onclick="apply_filters()">Apply Filters</button>
+        <button type="button" onclick="app.applyFilters()">Apply Filters</button>
 
-    <button onclick="reset_filters()">Clear Filters</button>
+        <button onclick="app.resetFilters()">Clear Filters</button>
 
-    <p id="applied_filters"></p>
+        <p id="applied_filters"></p>
+    </div>
 
-    <div id="videos_container"></div>
+    <div id="videos_container">
+        <table id="videos_table" border="1" style="border-collapse: collapse; width: 100%;">
+            <thead>
+                <tr>
+                <th style="padding: 8px;" onclick="app.renderTable('Id')">ID</th>
+                <th style="padding: 8px;" onclick="app.renderTable('Filename')">Filename</th>
+                <th style="padding: 8px;" onclick="app.renderTable('LengthSeconds')">Length (seconds)</th>
+                <th style="padding: 8px;" onclick="app.renderTable('RecordedDate')">Recorded Date</th>
+                <th style="padding: 8px;" onclick="app.renderTable('Location')">Location</th>
+                <th style="padding: 8px;" onclick="app.renderTable('People')">People</th>
+                </tr>
+            </thead>
+        <tbody></tbody>
+    </div>
 
     <script src="index.js"></script>
 </body>
