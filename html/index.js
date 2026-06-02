@@ -1,6 +1,8 @@
 const filter_form = document.getElementById("filter_form");
 const applied_filters = document.getElementById('applied_filters');
 
+apply_filters();
+
 function reset_filters() {
     filter_form.reset();
 
