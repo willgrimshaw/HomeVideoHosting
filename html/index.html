@@ -4,43 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HomeVideoHosting</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div id="filters_container">
+        <h2 style="margin-bottom: 20px; color: #333;">Filters</h2>
         <form id="filter_form">
-            <label>Name:</label>
-            <input type="text" name="name">
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" name="name" placeholder="Enter video name...">
+            </div>
 
-            <label>Location:</label>
-            <input type="text" name="location">
+            <div class="form-group">
+                <label>Location:</label>
+                <input type="text" name="location" placeholder="Enter location...">
+            </div>
 
-            <label>Start date:</label>
-            <input type="date" name="startdate">
+            <div class="form-group">
+                <label>Start date:</label>
+                <input type="date" name="startdate">
+            </div>
 
-            <label>End date:</label>
-            <input type="date" name="enddate">
+            <div class="form-group">
+                <label>End date:</label>
+                <input type="date" name="enddate">
+            </div>
         </form>
 
+        <div class="filter-controls">
+            <button type="button" onclick="app.applyFilters()">Apply Filters</button>
+            <button onclick="app.resetFilters()">Clear Filters</button>
+        </div>
 
-        <br>
-
-        <button type="button" onclick="app.applyFilters()">Apply Filters</button>
-
-        <button onclick="app.resetFilters()">Clear Filters</button>
-
-        <p id="applied_filters"></p>
+        <div class="filter-status">
+            <p id="applied_filters"></p>
+        </div>
     </div>
 
     <div id="videos_container">
-        <table id="videos_table" border="1" style="border-collapse: collapse; width: 100%;">
+        <table id="videos_table">
             <thead>
                 <tr>
-                <th style="padding: 8px;" onclick="app.renderTable('Id')">ID</th>
-                <th style="padding: 8px;" onclick="app.renderTable('Filename')">Filename</th>
-                <th style="padding: 8px;" onclick="app.renderTable('LengthSeconds')">Length (seconds)</th>
-                <th style="padding: 8px;" onclick="app.renderTable('RecordedDate')">Recorded Date</th>
-                <th style="padding: 8px;" onclick="app.renderTable('Location')">Location</th>
-                <th style="padding: 8px;" onclick="app.renderTable('People')">People</th>
+                <th onclick="app.renderTable('Id')">ID</th>
+                <th onclick="app.renderTable('Filename')">Filename</th>
+                <th onclick="app.renderTable('LengthSeconds')">Length (seconds)</th>
+                <th onclick="app.renderTable('RecordedDate')">Recorded Date</th>
+                <th onclick="app.renderTable('Location')">Location</th>
+                <th onclick="app.renderTable('People')">People</th>
                 </tr>
             </thead>
         <tbody></tbody>

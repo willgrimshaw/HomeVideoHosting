@@ -1,0 +1,345 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+/* Shared Containers */
+.container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#filters_container {
+    background: white;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#videos_container {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-x: auto;
+}
+
+/* Filter Form Styles */
+#filter_form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+#filter_form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #555;
+    font-size: 14px;
+}
+
+#filter_form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+#filter_form input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-controls {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.filter-status {
+    margin-top: 15px;
+}
+
+#applied_filters {
+    margin-top: 15px;
+    padding: 15px;
+    background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+    border-left: 4px solid #667eea;
+    border-radius: 6px;
+    color: #555;
+    font-size: 14px;
+    min-height: 24px;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+#applied_filters:empty {
+    display: none;
+}
+
+#applied_filters::before {
+    content: "🔍 ";
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+/* Button Styles */
+button[type="button"]:first-of-type {
+    background-color: #667eea;
+    color: white;
+}
+
+button[type="button"]:first-of-type:hover {
+    background-color: #5568d3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+}
+
+button[onclick*="resetFilters"] {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+button[onclick*="resetFilters"]:hover {
+    background-color: #d0d0d0;
+    transform: translateY(-2px);
+}
+
+/* Table Styles */
+#videos_table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#videos_table thead {
+    background-color: #667eea;
+    color: white;
+}
+
+#videos_table th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s;
+    border: none;
+}
+
+#videos_table th:hover {
+    background-color: #5568d3;
+}
+
+#videos_table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+}
+
+#videos_table tbody tr {
+    transition: background-color 0.2s;
+}
+
+#videos_table tbody tr:hover {
+    background-color: #f8f9ff;
+}
+
+#videos_table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Player Page Styles */
+.back-link {
+    margin-bottom: 25px;
+    display: inline-block;
+}
+
+.back-link a {
+    color: #667eea;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.back-link a::before {
+    content: "← ";
+}
+
+.back-link a:hover {
+    background-color: #f0f0f0;
+    color: #5568d3;
+}
+
+video {
+    width: 100%;
+    height: auto;
+    background-color: #000;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.video-info {
+    background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+    transition: all 0.3s ease;
+}
+
+.video-info h2 {
+    margin: 0 0 15px 0;
+    color: #333;
+    font-size: 20px;
+}
+
+.video-info p {
+    margin: 8px 0;
+    color: #555;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.video-info strong {
+    color: #667eea;
+    font-weight: 600;
+}
+
+.error {
+    background: linear-gradient(135deg, #ff646415 0%, #ff464615 100%);
+    color: #d32f2f;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #d32f2f;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.error strong {
+    color: #c62828;
+    font-weight: 600;
+}
+
+#player-container {
+    animation: fadeIn 0.3s ease;
+}
+
+#error-container {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #filter_form {
+        grid-template-columns: 1fr;
+    }
+
+    #videos_table {
+        font-size: 13px;
+    }
+
+    #videos_table th,
+    #videos_table td {
+        padding: 10px 8px;
+    }
+
+    button {
+        padding: 8px 16px;
+        font-size: 13px;
+        margin-bottom: 5px;
+    }
+
+    .filter-controls {
+        flex-direction: column;
+    }
+
+    .filter-controls button {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    video {
+        margin-bottom: 20px;
+    }
+
+    .video-info {
+        padding: 15px;
+    }
+
+    .video-info h2 {
+        font-size: 18px;
+        margin-bottom: 12px;
+    }
+
+    .back-link a {
+        font-size: 13px;
+        padding: 6px 10px;
+    }
+}
